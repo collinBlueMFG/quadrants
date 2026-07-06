@@ -37,6 +37,15 @@ numpad2::(mover(10,0))
 numpad3::(mover(0,10))
 numpad6::(mover(0,-10))
 
+
+NumpadEnter::{
+        Send(mouseClick("Left",,,,,"D"))
+        KeyWait("NumpadEnter")
+        Send(MouseClick("Left",,,,,"U"))
+    }
+
++NumpadEnter::MouseClick('Right')
+
 mover(mx,my){ ;move function
     CoordMode("Mouse","Screen")
     MouseGetPos(&x,&y)
