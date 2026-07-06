@@ -5,6 +5,10 @@
 global quadlayer := 1
 global quadoriginy := 0
 global quadoriginx := 0
+global monitoroffsetx := 0
+global monitoroffsety := 0
+global debugx := 0
+global debugy := 0
 global myGui := Gui("-Caption +AlwaysOnTop +ToolWindow")
 myGui.BackColor := "000000"
 WinSetTransparent(60, myGui)
@@ -32,11 +36,23 @@ numpad5:: {
     global quadlayer +=1
 }
 
+
 numpad1::(mover(-10,0)) ;manual key navigation
 numpad2::(mover(10,0))
 numpad3::(mover(0,10))
 numpad6::(mover(0,-10))
-
+NumpadDiv::{
+    global monitoroffsetx -= 1920
+    global quadoriginx += monitoroffsetx
+}
+NumpadMult::{
+    global monitoroffsetx += 1920
+    global quadoriginx += monitoroffsetx
+}
+NumpadSub::{
+    global monitoroffsetx := 0
+    global quadoriginx := 0
+}
 
 NumpadEnter::{
         Send(mouseClick("Left",,,,,"D"))
@@ -47,8 +63,12 @@ NumpadEnter::{
 +NumpadEnter::MouseClick('Right')
 
 mover(mx,my){ ;move function
+    global debugx
+    global debugy
     CoordMode("Mouse","Screen")
     MouseGetPos(&x,&y)
+    debugx := x
+    debugy := y
     DllCall("SetCursorPos","int",x + mx,"int",y+my)
 }
 
@@ -57,6 +77,9 @@ selectquadrant(qn){ ;quadrant movement function
     global quadlayer
     global quadoriginy
     global quadoriginx
+    global monitoroffsetx
+    global monitoroffsety
+
     qw := 1920/(2**quadlayer)
     qh := 1080/(2**quadlayer)
 
@@ -87,7 +110,7 @@ selectquadrant(qn){ ;quadrant movement function
 
 resetter(){ ;reset quadrant variables
     global quadoriginy := 0
-    global quadoriginx := 0
+    global quadoriginx := monitoroffsetx
     global quadlayer := 1
     myGui.Hide
 }
