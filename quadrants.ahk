@@ -32,21 +32,18 @@ numpad5:: {
     global quadlayer +=1
 }
 
-numpad1::(mover(-10,0))
+numpad1::(mover(-10,0)) ;manual key navigation
 numpad2::(mover(10,0))
 numpad3::(mover(0,10))
 numpad6::(mover(0,-10))
 
-mover(mx,my){
+mover(mx,my){ ;move function
     CoordMode("Mouse","Screen")
     MouseGetPos(&x,&y)
     DllCall("SetCursorPos","int",x + mx,"int",y+my)
 }
 
-
-
-
-selectquadrant(qn){
+selectquadrant(qn){ ;quadrant movement function
     CoordMode("Mouse","Screen")
     global quadlayer
     global quadoriginy
@@ -79,14 +76,14 @@ selectquadrant(qn){
     boxer(qw,qh)
 }
 
-resetter(){
+resetter(){ ;reset quadrant variables
     global quadoriginy := 0
     global quadoriginx := 0
     global quadlayer := 1
     myGui.Hide
 }
 
-boxer(qw,qh){
+boxer(qw,qh){ ;quadrant overlay setter
     global quadoriginx
     global quadoriginy
     global myGui
