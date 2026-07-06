@@ -7,15 +7,12 @@ global quadoriginy := 0
 global quadoriginx := 0
 global myGui := Gui("-Caption +AlwaysOnTop +ToolWindow")
 myGui.BackColor := "000000"
-WinSetTransparent(30, myGui)
+WinSetTransparent(60, myGui)
 WinSetExStyle("+0x20", myGui) ; WS_EX_TRANSPARENT (click-through)
 
 
-numpad3::{ ;
-    global quadoriginy := 0
-    global quadoriginx := 0
-    global quadlayer := 1
-    myGui.Hide
+numpadAdd::{ ;reset all position variables
+    resetter()
 }
 
 numpad7:: { 
@@ -35,6 +32,20 @@ numpad5:: {
     global quadlayer +=1
 }
 
+numpad1::(mover(-10,0))
+numpad2::(mover(10,0))
+numpad3::(mover(0,10))
+numpad6::(mover(0,-10))
+
+mover(mx,my){
+    CoordMode("Mouse","Screen")
+    MouseGetPos(&x,&y)
+    DllCall("SetCursorPos","int",x + mx,"int",y+my)
+}
+
+
+
+
 selectquadrant(qn){
     CoordMode("Mouse","Screen")
     global quadlayer
@@ -42,6 +53,11 @@ selectquadrant(qn){
     global quadoriginx
     qw := 1920/(2**quadlayer)
     qh := 1080/(2**quadlayer)
+
+    if quadlayer > 8{
+        resetter()
+        quadlayer -= 1
+    }
 
     if qn = 1{       
     }
@@ -63,13 +79,16 @@ selectquadrant(qn){
     boxer(qw,qh)
 }
 
+resetter(){
+    global quadoriginy := 0
+    global quadoriginx := 0
+    global quadlayer := 1
+    myGui.Hide
+}
+
 boxer(qw,qh){
     global quadoriginx
     global quadoriginy
     global myGui
     myGui.Show("x" . quadoriginx . " y" . quadoriginy . " w" . qw . " h" . qh)
 }
-  
-
-
-
