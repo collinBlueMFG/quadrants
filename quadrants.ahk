@@ -10,6 +10,7 @@ global monitoroffsety := 0
 global debugx := 0
 global debugy := 0
 global myGui := Gui("-Caption +AlwaysOnTop +ToolWindow")
+global MsgGui
 myGui.BackColor := "000000"
 WinSetTransparent(60, myGui)
 WinSetExStyle("+0x20", myGui) ; WS_EX_TRANSPARENT (click-through)
@@ -35,7 +36,6 @@ numpad5:: {
     selectquadrant(4)
     global quadlayer +=1
 }
-
 
 numpad1::(mover(-10,0)) ;manual key navigation
 numpad2::(mover(10,0))
@@ -121,3 +121,35 @@ boxer(qw,qh){ ;quadrant overlay setter
     global myGui
     myGui.Show("x" . quadoriginx . " y" . quadoriginy . " w" . qw . " h" . qh)
 }
+
+ShowMsg(txt, color := "FFFFFF") {
+    global MsgGui
+
+    try MsgGui.Destroy()
+
+    MsgGui := Gui("-Caption +AlwaysOnTop +ToolWindow")
+    MsgGui.BackColor := "202020"
+
+    MsgGui.SetFont("s12 Bold", "Segoe UI")
+    MsgGui.AddText("c" color " w200 Center", txt)	
+    MsgGui.Show("x1150 y1036 NoActivate AutoSize")
+}
+
+HideMsg() {
+	global MsgGui
+	try MsgGui.Destroy()
+}
+
+
+#SuspendExempt true
+    NumpadDot::{
+        Suspend(-1)
+        if(A_IsSuspended){
+            HideMsg
+            ShowMsg("SUSPENDED")
+        }
+        if(A_isSuspended = False){
+            HideMsg
+            ShowMsg("ACTIVE")
+        }
+    }
