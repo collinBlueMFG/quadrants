@@ -142,7 +142,7 @@ HideMsg() {
 
 
 #SuspendExempt true
-    NumpadDot::{
+    NumpadDel::{
         Suspend(-1)
         if(A_IsSuspended){
             HideMsg
