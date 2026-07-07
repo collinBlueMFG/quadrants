@@ -7,5 +7,6 @@ coordinate-based cursor control with keyboard using autohotkey
 
 symmetrical:
 
+
 <img width="322" height="380" alt="image" src="https://github.com/user-attachments/assets/ab01d2f2-ba2e-428d-a8f7-31647eeeb79d" />
 
