@@ -7,8 +7,6 @@ global quadoriginy := 0
 global quadoriginx := 0
 global monitoroffsetx := 0
 global monitoroffsety := 0
-global debugx := 0
-global debugy := 0
 global myGui := Gui("-Caption +AlwaysOnTop +ToolWindow")
 global MsgGui
 myGui.BackColor := "000000"
@@ -67,12 +65,8 @@ NumpadEnter::{
 +NumpadEnter::MouseClick('Right')
 
 mover(mx,my){ ;move function
-    global debugx
-    global debugy
     CoordMode("Mouse","Screen")
     MouseGetPos(&x,&y)
-    debugx := x
-    debugy := y
     DllCall("SetCursorPos","int",x + mx,"int",y+my)
 }
 
@@ -116,13 +110,27 @@ resetter(){ ;reset quadrant variables
     global quadoriginy := 0
     global quadoriginx := monitoroffsetx
     global quadlayer := 1
-    myGui.Hide
+    global myGui
+    myGui.Destroy()
+    myGui := Gui("-Caption +AlwaysOnTop +ToolWindow")
+    myGui.BackColor := "000000"
+    WinSetTransparent(60, myGui)
+    WinSetExStyle("+0x20", myGui)
 }
 
 boxer(qw,qh){ ;quadrant overlay setter
     global quadoriginx
     global quadoriginy
     global myGui
+
+    myGui.Destroy()
+    myGui := Gui("-Caption +AlwaysOnTop +ToolWindow")
+    myGui.BackColor := "000000"
+    WinSetTransparent(60, myGui)
+    WinSetExStyle("+0x20", myGui) ; click-through
+
+    myGui.AddText("x0 y" . qh*0.5 . " w" . qw . " h1 BackgroundWhite")
+    myGui.AddText("x" . qw*0.5 . " y0 w1 h" . qh . " BackgroundWhite")
     myGui.Show("x" . quadoriginx . " y" . quadoriginy . " w" . qw . " h" . qh)
 }
 
