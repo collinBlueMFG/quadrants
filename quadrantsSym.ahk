@@ -131,7 +131,7 @@ boxer(qw,qh){ ;quadrant overlay setter
 
     myGui.AddText("x0 y" . qh*0.5 . " w" . qw . " h1 BackgroundWhite")
     myGui.AddText("x" . qw*0.5 . " y0 w1 h" . qh . " BackgroundWhite")
-    myGui.Show("x" . quadoriginx . " y" . quadoriginy . " w" . qw . " h" . qh)
+    myGui.Show("x" . quadoriginx . " y" . quadoriginy . " w" . qw . " h" . qh . " NoActivate")
 }
 
 ShowMsg(txt, color := "FFFFFF") {
