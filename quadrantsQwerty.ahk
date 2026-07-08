@@ -53,7 +53,7 @@ i::(mover(0,-10))
 }
 Space::{
         Send(mouseClick("Left",,,,,"D"))
-        KeyWait("NumpadEnter")
+        KeyWait("Space")
         Send(MouseClick("Left",,,,,"U"))
     }
 
