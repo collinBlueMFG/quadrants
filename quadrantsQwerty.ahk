@@ -15,7 +15,7 @@ WinSetExStyle("+0x20", myGui) ; WS_EX_TRANSPARENT (click-through)
 
 ;HOTKEY ASSIGNMENTS
 
-p::{ ;reset all position variables
+`;::{ ;reset all position variables
     resetter()
 }
 
