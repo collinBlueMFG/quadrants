@@ -172,7 +172,7 @@ HideMsg() {
 ;SUSPENDTOGGLE
 
 #SuspendExempt true
-    ^g::{
+    CapsLock::{
         Suspend(-1)
         if(A_IsSuspended){
             HideMsg
