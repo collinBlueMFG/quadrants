@@ -35,10 +35,16 @@ m:: {
     selectquadrant(4)
     global quadlayer +=1
 }
-j::(mover(-10,0)) ;manual key navigation
-l::(mover(10,0))
-k::(mover(0,10))
-i::(mover(0,-10))
+j::(mover(-10,0,false)) ;manual key navigation
+l::(mover(10,0,false))
+k::(mover(0,10,false))
+i::(mover(0,-10,false))
+
+e::(mover(0,-1,true)) ;move relative to current quadrant
+d::(mover(0,1,true))
+s::(mover(-1,0,true))
+f::(mover(1,0,true))
+
 1::{
     global monitoroffsetx -= 1920
     global quadoriginx += monitoroffsetx
@@ -61,10 +67,22 @@ Space::{
 
 ;MOVEMENT LOGIC:
 
-mover(mx,my){ ;move function
-    CoordMode("Mouse","Screen")
-    MouseGetPos(&x,&y)
-    DllCall("SetCursorPos","int",x + mx,"int",y+my)
+mover(mx,my,inquadrant){ ;move function
+    global quadlayer
+    global quadoriginx
+    global quadoriginy
+    qw := 1920/(2**quadlayer)
+    qh := 1080/(2**quadlayer)
+    if inquadrant{
+        CoordMode("Mouse", "Screen")
+        MouseGetPos(&x,&y)
+        DllCall("SetCursorPos", "int",x+qw*mx, "int", y+ qh*my)
+    }
+    else{
+        CoordMode("Mouse","Screen")
+        MouseGetPos(&x,&y)
+        DllCall("SetCursorPos","int",x + mx,"int",y+my)
+    }
 }
 
 selectquadrant(qn){ ;quadrant movement function
