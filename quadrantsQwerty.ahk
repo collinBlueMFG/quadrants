@@ -36,14 +36,14 @@ m:: {
     global quadlayer +=1
 }
 j::(mover(-10,0,false)) ;manual key navigation
-l::(mover(10,0,false))
 k::(mover(0,10,false))
 i::(mover(0,-10,false))
+l::(mover(10,0,false))
 
-e::(mover(0,-1,true)) ;move relative to current quadrant
-d::(mover(0,1,true))
-s::(mover(-1,0,true))
-f::(mover(1,0,true))
++j::(mover(-1,0,true)) ;move relative to current quadrant
++k::(mover(0,1,true))
++i::(mover(0,-1,true))
++l::(mover(1,0,true))
 
 1::{
     global monitoroffsetx -= 1920
