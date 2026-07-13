@@ -13,7 +13,9 @@ myGui.BackColor := "000000"
 WinSetTransparent(60, myGui)
 WinSetExStyle("+0x20", myGui) ; WS_EX_TRANSPARENT (click-through)
 
+;---------------------------------
 ;HOTKEY ASSIGNMENTS
+;---------------------------------
 
 `;::{ ;reset all position variables
     resetter()
@@ -65,7 +67,9 @@ Space::{
 
 +Space::MouseClick('Right')
 
+;---------------------------------
 ;MOVEMENT LOGIC:
+;---------------------------------
 
 mover(mx,my,inquadrant){ ;move function
     global quadlayer
@@ -133,7 +137,9 @@ resetter(){ ;reset quadrant variables
     WinSetExStyle("+0x20", myGui)
 }
 
+;---------------------------------
 ;GUI STUFF
+;---------------------------------
 
 boxer(qw,qh){ ;quadrant overlay setter
     global quadoriginx
@@ -169,7 +175,9 @@ HideMsg() {
 	try MsgGui.Destroy()
 }
 
+;---------------------------------
 ;SUSPENDTOGGLE
+;---------------------------------
 
 #SuspendExempt true
     CapsLock::{
