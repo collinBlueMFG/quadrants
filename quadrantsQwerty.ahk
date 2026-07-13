@@ -47,6 +47,9 @@ l::(mover(10,0,false))
 +i::(mover(0,-1,true))
 +l::(mover(1,0,true))
 
+w::WheelUp
+s::WheelDown
+
 1::{
     global monitoroffsetx -= 1920
     global quadoriginx += monitoroffsetx
