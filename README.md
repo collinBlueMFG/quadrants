@@ -14,4 +14,5 @@ symmetrical:
 Qwerty:
 
 
-<img width="715" height="318" alt="image" src="https://github.com/user-attachments/assets/cdac5ff6-2812-4ae3-b9a6-bb85b7a07c96" />
+<img width="851" height="316" alt="image" src="https://github.com/user-attachments/assets/c5e19989-906d-4648-aad8-a269f56d5541" />
+
